@@ -3,6 +3,9 @@ Symantec's SymDaemon will consume 100% of a MacBook's CPU, run the cooling fan a
 don't have any choice about running the Symantec tool, this repo has resources/instructions, assuming you have sudo/root access, to apply some 
 reasonable restraints on just how intrusive the Symantec virus scanning tool is allowed to be.
 
+# (Semi-Sarcastic) Warning
+This slows down the Symantec virus scanning / monitoring process.  If the main reason you own a computer is to consume electricity trying to assure there are no viruses attacking that computer, you probably wouldn't want to do this.  If, however, it's been a REALLY REALLY long time since you did anything risky with your computer, and an even longer time since you have seen a virus scanner actually detect and stop a real virus, and you feel like it's a bit of an overreach for a virus scanning process to run as the highest priority task on your machine, this might be what you're looking for.
+
 # Instructions
  
 Commands in **bold**.
@@ -38,13 +41,16 @@ To setting this up:
   * **ps -Ax |grep cputhrottle**
   * **ps -Ax |grep throttlesym**
 
-# Stopping the LaunchdAgent
+# Stopping/Unloading the LaunchAgent
   * **launchctl unload -w ~/Library/LaunchAgents/org.example.throttlesym.plist**
 
-# Modify the Script
+# Modifying the Script
   * **sudo vi /Applications/throttlesym.app/Contents/Resources/throttlesym/bin/throttlesym.sh**
 
 # More Info
 * launchd info - https://developer.apple.com/library/content/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html
 * cputhrottle info - http://www.willnolan.com/cputhrottle/cputhrottle.html
 * File permissions with SUID bit - http://www.filepermissions.com/file-permission/4755
+
+# Ideas
+* Add logic based on time-of-day, idle-check, power-plug-status, etc. to un-cputhrottle and let SymDaemon go ape-s*** on the processor and finish whatever it's doing every once in a while.

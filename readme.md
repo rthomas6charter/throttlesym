@@ -43,6 +43,9 @@ To set this up:
   * **ps -Ax |grep throttlesym**
 
 # Stopping/Unloading the LaunchAgent
+
+If you decide this isn't helping and you just want to disable it.
+
   * **launchctl unload -w ~/Library/LaunchAgents/org.example.throttlesym.plist**
 
 # Modifying the Script

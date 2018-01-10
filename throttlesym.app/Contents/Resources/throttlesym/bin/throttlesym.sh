@@ -13,7 +13,7 @@ do
     # making the machine sluggish and nearly unusable at times.  Virus checking is
     # important, but it shouldn't take a front seat to actually being able to use the
     # computer, especially when an actual virus is detected... um... barely ever.
-    throttleCommand="/usr/local/Cellar/cputhrottle/20100515_1/bin/cputhrottle ${symdPid} 10"
+    throttleCommand="/usr/local/Cellar/cputhrottle/1.0.0/bin/cputhrottle ${symdPid} 10"
 
     # Avoid causing a different problem by preventing a tight restart loop
     sleep 2s

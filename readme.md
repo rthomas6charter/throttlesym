@@ -6,21 +6,24 @@ Setting this up requires:
 1. installing the cputhrottle command
   * brew install cputhrottle
 1. entabling a script to grab the SymDaemon process-id / pid and run cputhrottle
-  * See: Applications/throttlesym.app/Contents/Resources/throttlesym/bin/throttlesym.sh
-    * Set its owner: sudo chown -R root:wheel /Applications/throttlesym.app
-    * Set SUID (sticky bit) permissions: chmod 4755 /Applications/throttlesym.app/Contents/Resources/throttlesym/bin/throttlesym.sh
+  * From a clone of this repository...
+    * **mkdir -p /Applications/throttlesym.app/Contents/Resources/throttlesym/bin**
+    * **cp Applications/throttlesym.app/Contents/Resources/throttlesym/bin/throttlesym.sh /Applications/throttlesym.app/Contents/Resources/throttlesym/bin/**
+      * Set the owner/group: **sudo chown -R root:wheel /Applications/throttlesym.app**
+      * Set SUID (sticky bit) permissions: **sudo chmod 4755 /Applications/throttlesym.app/Contents/Resources/throttlesym/bin/throttlesym.sh**
 1. creating a "plist" descriptor for the launchd agent
-  * Library/LaunchAgents/org.example.throttlesym.plist
-  * This could be in ~/Library or /Library, depending on whether the agent should be active for one or all users.
+  * From a clone of this git repository...
+    * **cp Library/LaunchAgents/org.example.throttlesym.plist ~/Library/LaunchAgents/**
+  * *Note: This could be in ~/Library or /Library, depending on whether the agent should be active for one or all users.*
 1. modifying /etc/sudoers
-  * Add this line to /etc/sudoers using the sudo visudo command
+  * Add this line to /etc/sudoers using the sudo **visudo** command
     * youruserid ALL=(ALL) NOPASSWD: /Applications/throttlesym.app/Contents/Resources/throttlesym/bin/throttlesym.sh
-      * ...where youruserid is... um... your user id.
+      * *...where youruserid is... um... your user id.*
 1. loading the agent using the launchctl command.
-  * launchctl load -w ~/Library/LaunchAgents/org.example.throttlesym.plist
+  * **launchctl load -w ~/Library/LaunchAgents/org.example.throttlesym.plist**
 
 * To check on how it's working:
-  * sudo cat /tmp/throttlesym.out
-  * sudo cat /tmp/throttlesym.err
-  * ps -Ax |grep cputhrottle
-  * ps -Ax |grep throttlesym
+  * **sudo cat /tmp/throttlesym.out**
+  * **sudo cat /tmp/throttlesym.err**
+  * **ps -Ax |grep cputhrottle**
+  * **ps -Ax |grep throttlesym**

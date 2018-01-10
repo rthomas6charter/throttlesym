@@ -5,21 +5,21 @@ reasonable restraints on just how intrusive the Symantec virus scanning tool is 
 Setting this up requires:
 1. installing the cputhrottle command
   * brew install cputhrottle
-1. entabling a script to grab the SymDaemon process-id / pid and run cputhrottle
+2. entabling a script to grab the SymDaemon process-id / pid and run cputhrottle
   * From a clone of this repository...
     * **mkdir -p /Applications/throttlesym.app/Contents/Resources/throttlesym/bin**
     * **cp Applications/throttlesym.app/Contents/Resources/throttlesym/bin/throttlesym.sh /Applications/throttlesym.app/Contents/Resources/throttlesym/bin/**
       * Set the owner/group: **sudo chown -R root:wheel /Applications/throttlesym.app**
       * Set SUID (sticky bit) permissions: **sudo chmod 4755 /Applications/throttlesym.app/Contents/Resources/throttlesym/bin/throttlesym.sh**
-1. creating a "plist" descriptor for the launchd agent
+3. creating a "plist" descriptor for the launchd agent
   * From a clone of this git repository...
     * **cp Library/LaunchAgents/org.example.throttlesym.plist ~/Library/LaunchAgents/**
   * *Note: This could be in ~/Library or /Library, depending on whether the agent should be active for one or all users.*
-1. modifying /etc/sudoers
+4. modifying /etc/sudoers
   * Add this line to /etc/sudoers using the sudo **visudo** command
     * youruserid ALL=(ALL) NOPASSWD: /Applications/throttlesym.app/Contents/Resources/throttlesym/bin/throttlesym.sh
       * *...where youruserid is... um... your user id.*
-1. loading the agent using the launchctl command.
+5. loading the agent using the launchctl command.
   * **launchctl load -w ~/Library/LaunchAgents/org.example.throttlesym.plist**
 
 * To check on how it's working:

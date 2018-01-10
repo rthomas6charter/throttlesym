@@ -10,13 +10,14 @@ This slows down the Symantec virus scanning / monitoring process.  If the main r
  
 Commands in **bold**.
 
-To setting this up:
+To set this up:
 1. install the cputhrottle command
   * **brew install cputhrottle**
 2. enable a script to grab the SymDaemon process-id / pid and run cputhrottle
   * From a clone of this repository...
     * **mkdir -p /Applications/throttlesym.app/Contents/Resources/throttlesym/bin**
     * **cp Applications/throttlesym.app/Contents/Resources/throttlesym/bin/throttlesym.sh /Applications/throttlesym.app/Contents/Resources/throttlesym/bin/**
+      * *Optional: Edit the script and change the 10 at the end of the cputhrottle command, which sets the throttle limit to 10% CPU, to some other value.*
       * Set the owner/group: 
         * **sudo chown -R root:wheel /Applications/throttlesym.app**
       * Set SUID (sticky bit) permissions: 
